@@ -24,13 +24,33 @@ function App() {
       .attr('width', 1000)
       .attr('height', 1000);
 
-    const embeddingsComp = new ArchieComponent({ top: 25, left: 25 }, {icon: databaseSVG, label: "Embeddings", sublabel: "VectorDB"})
-    const authComp = new ArchieComponent({ top: 25, left: 25 + embeddingsComp.getDimensions().width + 24 }, {icon: securitySVG, label: "Authorization"})
-    
+    const embeddingsComp = new ArchieComponent({ top: 25, left: 25 }, { icon: databaseSVG, label: "Embeddings", sublabel: "VectorDB" })
+    const authComp = new ArchieComponent({ top: 25, left: 25 + embeddingsComp.getDimensions().width + 24 }, { icon: securitySVG, label: "Authorization" })
+
     embeddingsComp.render(svg, d3Container)
     authComp.render(svg, d3Container)
 
-    
+    // Define the arrowhead marker
+    svg.append('defs').append('marker')
+      .attr('id', 'arrowhead')
+      .attr('markerWidth', 6)
+      .attr('markerHeight', 7)
+      .attr('refX', 0)
+      .attr('refY', 3.5)
+      .attr('orient', 'auto')
+      .append('polygon')
+      .attr('points', '0 0, 6 3.5, 0 7')
+      .attr('fill', '#dfe2ea')
+
+    // Draw a line with the arrowhead marker at the end
+    svg.append('line')
+      .attr('x1', 25 + embeddingsComp.getDimensions().width + 24) // Start x position
+      .attr('y1', 25 + embeddingsComp.getDimensions().height / 2) // Start y position
+      .attr('x2', 25 + embeddingsComp.getDimensions().width + 14) // End x position
+      .attr('y2', 25 + embeddingsComp.getDimensions().height / 2) // End y position
+      .attr('stroke', '#dfe2ea')
+      .attr('stroke-width', 2)
+      .attr('marker-end', 'url(#arrowhead)'); // Reference the defined 
 
   }
 

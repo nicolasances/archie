@@ -76,6 +76,9 @@
 
 .archie-component-icon {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   fill: black;
   width: 24px;
   height: 24px;
